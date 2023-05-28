@@ -10,13 +10,16 @@ public class ChatInteractivo {
         System.out.println("Bienvenido al Chat Interactivo!");
         System.out.println("Por favor ingresa tu nombre de usuario");
         
-        String nombreUsuario = scanner.nextLine();
+        String userName = scanner.nextLine();
+        Double budget = Double.valueOf(scanner.nextLine());
+        Double availableHours = Double.valueOf(scanner.nextLine());
+        String touristAttraction = scanner.nextLine();
         
-		Usuario usuario = new Usuario(nombreUsuario);
+		User user = new User(userName,budget,availableHours,touristAttraction);
         
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("chat_log.txt"))) {
             while (true) {
-                System.out.print(usuario.getNombreUsuario()+ ": ");
+                System.out.print(user.getUserName()+ ": ");
                 String mensajeUsuario = scanner.nextLine();
                 
                 if (mensajeUsuario.equalsIgnoreCase("salir")) {
@@ -28,7 +31,7 @@ public class ChatInteractivo {
                 System.out.println("Bot: " + mensajeRespuesta);
                 
                 // Escribir la interacción en el archivo de texto
-                bw.write(usuario.getNombreUsuario()+": " + mensajeUsuario);
+                bw.write(user.getUserName()+": " + mensajeUsuario);
                 bw.newLine();
                 bw.write("Bot: " + mensajeRespuesta);
                 bw.newLine();
