@@ -18,6 +18,14 @@ public class Ticket {
         }
     }*/
     
+    public User getUser() {
+        return user;
+    }
+    
+    public Offer getOffer() {
+        return offer;
+    }
+    
     public void printDetail() {
         System.out.println("Usuario: "+user.getUserName());
         System.out.println("Compro: "+offer.getName());
