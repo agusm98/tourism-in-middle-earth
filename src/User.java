@@ -4,14 +4,14 @@ public class User {
 	private Double budget;
 	private Double availableHours;
 	private String touristAttraction;
-	
-	public User(String name,Double budget,Double availableHours,String touristAttraction) {
+
+	public User(String name, Double budget, Double availableHours, String touristAttraction) {
 		this.name = name;
 		this.budget = budget;
 		this.availableHours = availableHours;
 		this.touristAttraction = touristAttraction;
 	}
-	
+
 	public String getUserName() {
 		return name;
 	}
@@ -43,5 +43,5 @@ public class User {
 	public void setTouristAttraction(String touristAttraction) {
 		this.touristAttraction = touristAttraction;
 	}
-	
+
 }
