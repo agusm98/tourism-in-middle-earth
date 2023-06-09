@@ -1,6 +1,4 @@
-package main.basicclasses;
-
-import main.enums.AttractionType;
+package com.unlam.paradigms.tp;
 
 public class Attraction {
 	private String description;

@@ -1,4 +1,4 @@
-package main.basicclasses;
+package com.unlam.paradigms.tp;
 
 import java.util.List;
 
