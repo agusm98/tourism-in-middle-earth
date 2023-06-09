@@ -1,8 +1,30 @@
 package main;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.unlam.paradigms.tp.User;
+import com.unlam.paradigms.tp.UserLoader;
 
 public class Main {
-
 	public static void main(String[] args) {
-		System.out.println("Hellow world");
+		String fileName = "tourism-in-middle-earth/src/source-data/users.txt";
+		File file = new File(fileName);
+		String absolutePath = file.getAbsolutePath();
+		
+
+		UserLoader userLoader = new UserLoader(absolutePath);
+		
+		List<User> users = new ArrayList<User>();
+		
+		try {
+			users = userLoader.processAndParse();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		for (User user : users) {
+			System.out.println(user.getUserName()+"--"+user.getBudget()+"--"+user.getAvailableHours()+"--"+user.getTouristAttraction());
+		}
 	}
 }
