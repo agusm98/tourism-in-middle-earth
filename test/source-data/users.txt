@@ -1,0 +1,3 @@
+jorge,100,5,Mordor
+agustin,200.5,10,Moria
+Tomi,300,2,Mordor
