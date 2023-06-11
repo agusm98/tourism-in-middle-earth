@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +31,7 @@ public final class Manager {
 	}
 
 	private List<OfferDescription> fetchOffers(final BufferedReader bfReader) throws IOException {
-		final List<OfferDescription> offerDescriptions = Collections.emptyList();
+		final List<OfferDescription> offerDescriptions = new ArrayList<>();
 		String line;
 
 		while ((line = bfReader.readLine()) != null) {
@@ -53,7 +52,7 @@ public final class Manager {
 	}
 
 	private List<TourismOption> fetchAttractions(final BufferedReader bfReader) throws IOException {
-		final List<TourismOption> attractions = Collections.emptyList();
+		final List<TourismOption> attractions = new ArrayList<>();
 		String line;
 
 		while ((line = bfReader.readLine()) != null) {
@@ -74,7 +73,7 @@ public final class Manager {
 	}
 
 	private List<TourismOption> filterByUserPreferences(final User user, final List<TourismOption> options) {
-		List<TourismOption> filteredOptions = Collections.emptyList();
+		List<TourismOption> filteredOptions = new ArrayList<>();
 
 		for (TourismOption option : options) {
 			if (option.isValid(user)) {
@@ -87,7 +86,7 @@ public final class Manager {
 
 	private List<TourismOption> filterByOfferDescription(final OfferDescription offerDescription,
 			final List<TourismOption> options) {
-		List<TourismOption> filteredOptions = Collections.emptyList();
+		List<TourismOption> filteredOptions = new ArrayList<>();
 
 		for (String name : offerDescription.getAttractionNames()) {
 			for (TourismOption option : options) {
@@ -102,8 +101,8 @@ public final class Manager {
 
 	private List<TourismOption> buildOffersByUserPreference(final List<OfferDescription> offerDescriptions,
 			final List<TourismOption> options) {
-		final List<String> optionNames = Collections.emptyList();
-		List<TourismOption> filteredOptions = Collections.emptyList();
+		final List<String> optionNames = new ArrayList<>();
+		List<TourismOption> filteredOptions = new ArrayList<>();
 
 		for (TourismOption tourismOption : options) {
 			optionNames.add(tourismOption.getName());
@@ -130,8 +129,8 @@ public final class Manager {
 		return new TourismOptionIterator(user, new ArrayList<>(options));
 	}
 
-	public void createTicket(final User user, final TourismOption option) {
-
+	public Ticket createTicket(final User user, final TourismOption option) {
+		return new Ticket(user, option);
 	}
 
 }
