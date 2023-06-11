@@ -46,15 +46,5 @@ public abstract class Offer extends TourismOption {
 		}
 		return true;
 	}
-	
-	@Override
-	public int compareTo(TourismOption o) {
-		
-		for (TourismOption tourismOption : options) {
-			
-			
-		}
-		
-		return 0;
-	}
+
 }

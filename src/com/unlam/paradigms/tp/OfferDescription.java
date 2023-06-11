@@ -31,5 +31,21 @@ public class OfferDescription {
 	public TourismOptionType getTourismOptionType() {
 		return tourismOptionType;
 	}
+	
+	public Offer createOffer(final List<TourismOption> attractions) {
+		switch (offerType) {
+		case DISCOUNT: {
+			return new OfferPercentage(name, tourismOptionType, attractions);
+		}
+		case AxB: {
+			return new OfferAB(name, tourismOptionType, attractions);
+		}
+		case ABSOLUTE: {
+			return new OfferAbsolute(name, tourismOptionType, attractions);
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + offerType);
+		}
+	}
 
 }

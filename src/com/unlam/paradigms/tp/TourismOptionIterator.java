@@ -6,23 +6,26 @@ import java.util.List;
 public class TourismOptionIterator implements Iterator<TourismOption> {
 	
 	private final User user;
-	private List<TourismOption> attractions;
+	private List<TourismOption> options;
+	private Integer currentIndex = 0;
 	
-	public TourismOptionIterator(final User user, final List<TourismOption> attractions) {
+	public TourismOptionIterator(final User user, final List<TourismOption> options) {
 		this.user = user;
+		this.options = options;
 	}
 
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
+		while(currentIndex < options.size() && !options.get(currentIndex).isValid(user)) {
+			++currentIndex;
+		}
 		
-		return false;
+		return currentIndex < options.size();
 	}
 
 	@Override
 	public TourismOption next() {
-		// TODO Auto-generated method stub
-		return null;
+		return options.get(currentIndex);
 	}
 
 }

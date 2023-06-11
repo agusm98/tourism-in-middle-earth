@@ -47,21 +47,15 @@ public class Attraction extends TourismOption {
 	public Double getAmountToPay() {
 		return price;
 	}
-	
+
 	@Override
 	public void reserve(String userName) {
 		revervations.add(userName);
 	}
-	
+
 	@Override
 	public Boolean isValid(User user) {
 		return places > 0;
-	}
-
-	@Override
-	public int compareTo(TourismOption o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

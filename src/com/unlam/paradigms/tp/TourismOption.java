@@ -1,7 +1,6 @@
-
 package com.unlam.paradigms.tp;
 
-public abstract class TourismOption implements Comparable<TourismOption> {
+public abstract class TourismOption {
 
 	public abstract TourismOptionType getType();
 
