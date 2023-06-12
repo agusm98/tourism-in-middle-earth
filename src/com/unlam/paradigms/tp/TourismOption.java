@@ -15,4 +15,6 @@ public abstract class TourismOption {
 	public abstract void reserve(final String userName);
 
 	public abstract Boolean isValid(final User user);
+	
+	public abstract Boolean isOffer();
 }

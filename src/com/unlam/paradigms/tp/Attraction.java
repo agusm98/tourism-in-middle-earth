@@ -57,5 +57,9 @@ public class Attraction extends TourismOption {
 	public Boolean isValid(User user) {
 		return places > 0;
 	}
-
+	
+   @Override
+    public Boolean isOffer() {
+        return false;
+    }
 }

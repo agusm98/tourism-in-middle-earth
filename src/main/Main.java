@@ -11,15 +11,13 @@ import com.unlam.paradigms.tp.Ticket;
 
 public class Main {
 	public static void main(String[] args) {
-		String fileName = "tourism-in-middle-earth/src/source-data/users.txt";
+		String fileName = "src/source-data/users.txt";
 		File file = new File(fileName);
 		String absolutePath = file.getAbsolutePath();
 
 		UserLoader userLoader = new UserLoader(absolutePath);
 
 		Alfred alfred = new Alfred();
-
-		// Manager manager = new Manager();
 
 		List<User> users = new ArrayList<User>();
 
@@ -43,7 +41,7 @@ public class Main {
 			totalTickets.addAll(tickets);
 		}
 
-		// manager.generateFile(totalTickets);
+		//Manager.generateFile(totalTickets);
 
 	}
 }
