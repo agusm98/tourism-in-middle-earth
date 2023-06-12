@@ -9,7 +9,7 @@ public class Attraction extends TourismOption {
 	private Double hours;
 	private Integer places;
 	private TourismOptionType type;
-	private final List<String> revervations = Collections.emptyList();
+	private final List<String> reservations = Collections.emptyList();
 
 	public Attraction(String name, Double price, Double hours, Integer places, TourismOptionType type) {
 		this.name = name;
@@ -50,7 +50,7 @@ public class Attraction extends TourismOption {
 
 	@Override
 	public void reserve(String userName) {
-		revervations.add(userName);
+		reservations.add(userName);
 	}
 
 	@Override

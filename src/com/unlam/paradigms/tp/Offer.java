@@ -23,6 +23,14 @@ public abstract class Offer extends TourismOption {
 		// TODO Auto-generated method stub
 		return type;
 	}
+	
+	public Double getDurations() {
+		double totalDuration = 0;
+		for (TourismOption tourismOption : options) {
+			totalDuration += tourismOption.getDuration();
+		}	
+		return totalDuration;
+	}
 
 	@Override
 	public String getName() {
@@ -46,5 +54,4 @@ public abstract class Offer extends TourismOption {
 		}
 		return true;
 	}
-
 }

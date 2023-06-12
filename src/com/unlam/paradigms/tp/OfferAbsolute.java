@@ -22,8 +22,21 @@ public class OfferAbsolute extends Offer {
 
 	@Override
 	public Double getAmountToPay() {
-		// TODO Auto-generated method stub
-		return null;
+		double totalPrice = 0;
+		
+		for (TourismOption attraction : super.getAttractions()) {
+			totalPrice += attraction.getBaseAmount();
+		}	
+		
+		if(totalPrice >= 200 && totalPrice <= 500) {
+			totalPrice -= 100;
+		} else if(totalPrice > 500 && totalPrice <= 750) {
+			totalPrice -= 200;
+		} else if(totalPrice > 750){
+			totalPrice -= 300;
+		}
+		
+		return totalPrice;
 	}
 
 }
