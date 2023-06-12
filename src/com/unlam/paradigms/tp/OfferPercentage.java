@@ -21,9 +21,14 @@ public class OfferPercentage extends Offer {
 	}
 
 	@Override
-	public Double getAmountToPay() {
-		// TODO Auto-generated method stub
-		return null;
+	public Double getAmountToPay() {		
+		double totalPrice = 0;
+		
+		for (TourismOption attraction : super.getAttractions()) {
+			totalPrice += attraction.getBaseAmount();
+		}
+		
+		return totalPrice * 0.8;
 	}
 
 }

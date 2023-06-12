@@ -19,11 +19,20 @@ public class OfferAB extends Offer {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private Double getLastBaseAmount() {
+		return super.getAttractions().get(super.getAttractions().size() - 1).getBaseAmount();
+	}
 
 	@Override
 	public Double getAmountToPay() {
-		// TODO Auto-generated method stub
-		return null;
+		double totalPrice = 0;
+		
+		for (TourismOption attraction : super.getAttractions()) {
+			totalPrice += attraction.getBaseAmount();
+		}
+		
+		return totalPrice - getLastBaseAmount();
 	}
 
 }
