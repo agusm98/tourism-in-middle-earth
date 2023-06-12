@@ -44,5 +44,17 @@ public class User {
 	public void setTouristAttraction(String touristAttraction) {
 		this.touristAttraction = touristAttraction;
 	}
+	
+	public boolean updateUser(TourismOption tourOption) {
 
+		if (this.budget - tourOption.getAmountToPay() >= 0 && this.availableHours - tourOption.getDuration() >= 0) {
+
+			this.budget -= tourOption.getAmountToPay();
+			this.availableHours -= tourOption.getDuration();
+			
+			return true;
+		}
+		
+		return false;
+	}
 }
