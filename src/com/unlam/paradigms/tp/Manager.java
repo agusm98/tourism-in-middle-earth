@@ -16,13 +16,24 @@ public final class Manager {
 	private static final String ATTRACTIONS_FILE_NAME = "atracctions.txt";
 	private static final String OFFERS_FILE_NAME = "offers.txt";
 	private static final String ITINERARY_FILE_NAME = "itinerary.txt";
+	private static final String SOURCE_PATH = "../source-data/";
 
 	private List<TourismOption> options;
 	private List<OfferDescription> offerDescriptions;
+	private static Manager INSTANCE; 
+	
+	
+	public static Manager getInstance() throws IOException {
+        if(INSTANCE == null) {
+            INSTANCE = new Manager();
+        }
+        
+        return INSTANCE;
+    }
 
-	public Manager(final String sourcePath) throws IOException {
-		final FileReader attFileReader = new FileReader(sourcePath + ATTRACTIONS_FILE_NAME);
-		final FileReader offFileReader = new FileReader(sourcePath + OFFERS_FILE_NAME);
+	private Manager() throws IOException {
+		final FileReader attFileReader = new FileReader(SOURCE_PATH + ATTRACTIONS_FILE_NAME);
+		final FileReader offFileReader = new FileReader(SOURCE_PATH + OFFERS_FILE_NAME);
 		final BufferedReader attBufferReader = new BufferedReader(attFileReader);
 		final BufferedReader offBufferReader = new BufferedReader(offFileReader);
 		final List<TourismOption> attracctions = new ArrayList<>();
@@ -36,6 +47,8 @@ public final class Manager {
 		attBufferReader.close();
 		offBufferReader.close();
 	}
+	
+	
 
 	private List<OfferDescription> fetchOffers(final BufferedReader bfReader) throws IOException {
 		final List<OfferDescription> offerDescriptions = new ArrayList<>();
