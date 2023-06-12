@@ -59,7 +59,7 @@ public final class Manager {
 
 			if (parameterPartipant.length > 1) {
 				final String offerDescriptionName = parameterPartipant[0];
-				final List<String> attractions = List.of(parameterPartipant[1].split("|"));
+				final List<String> attractions = List.of(parameterPartipant[1].split("\\|"));
 				final OfferType offerType = OfferType.valueOf(parameterPartipant[2]);
 				final TourismOptionType tourismOptionType = TourismOptionType.valueOf(parameterPartipant[3]);
 

@@ -9,12 +9,6 @@ public class OfferAbsolute extends Offer {
 	}
 
 	@Override
-	public Double getDuration() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Double getBaseAmount() {
 		// TODO Auto-generated method stub
 		return null;

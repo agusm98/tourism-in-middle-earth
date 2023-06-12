@@ -24,7 +24,8 @@ public abstract class Offer extends TourismOption {
 		return type;
 	}
 	
-	public Double getDurations() {
+	@Override
+	public Double getDuration() {
 		double totalDuration = 0;
 		for (TourismOption tourismOption : options) {
 			totalDuration += tourismOption.getDuration();
