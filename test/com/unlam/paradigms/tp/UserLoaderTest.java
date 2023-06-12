@@ -1,16 +1,13 @@
 package com.unlam.paradigms.tp;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class UserLoaderTest {
+public class UserLoaderTest {
 
 	@Test
 	public void testProcessAndParse_ValidFile() throws Exception {
@@ -31,17 +28,17 @@ class UserLoaderTest {
 		List<User> users = userLoader.processAndParse();
 
 		// Assert
-		Assertions.assertNotNull(users);
-		Assertions.assertEquals(3, users.size());
+		assertNotNull(users);
+		assertEquals(3, users.size());
 
 		for (int i = 0; i < expected.size(); i++) {
 			User actualUser = users.get(i);
 			User expectedUser = expected.get(i);
 
-			Assertions.assertEquals(expectedUser.getUserName(), actualUser.getUserName());
-			Assertions.assertEquals(expectedUser.getBudget(), actualUser.getBudget());
-			Assertions.assertEquals(expectedUser.getAvailableHours(), actualUser.getAvailableHours());
-			Assertions.assertEquals(expectedUser.getTouristAttraction(), actualUser.getTouristAttraction());
+			assertEquals(expectedUser.getUserName(), actualUser.getUserName());
+			assertEquals(expectedUser.getBudget(), actualUser.getBudget());
+			assertEquals(expectedUser.getAvailableHours(), actualUser.getAvailableHours());
+			assertEquals(expectedUser.getTouristAttraction(), actualUser.getTouristAttraction());
 		}
 
 	}
@@ -57,7 +54,8 @@ class UserLoaderTest {
 		UserLoader userLoader = new UserLoader(absolutePath);
 
 		// Act & Assert
-		Assertions.assertThrows(Exception.class, userLoader::processAndParse);
+		assertThrows(Exception.class, userLoader::processAndParse);
 		// Verifies that an exception is thrown when processing invalid data
 	}
+
 }
