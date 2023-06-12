@@ -1,5 +1,7 @@
 package com.unlam.paradigms.tp;
+import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -12,9 +14,11 @@ public class Alfred {
         this.inputScan = new Scanner(System.in);
     }
     
-    public List<Ticket> offerAttractions(User usr) {
+    public List<Ticket> offerAttractions(User usr) throws IOException {
         List<Ticket> tickets = new ArrayList<Ticket>();
-        Iterator<TourismOption> tourOptions = Manager.getOptions(usr); //Offer iterator
+        Manager manager = Manager.getInstance();
+        
+        Iterator<TourismOption> tourOptions = manager.getOptions(usr); //Offer iterator
 
         while(tourOptions.hasNext()) {
             TourismOption tourOption = tourOptions.next();
@@ -41,7 +45,7 @@ public class Alfred {
                 usr.updateGold();
                 Ticket ticket = new Ticket(usr, offer);
                 */
-                Ticket ticket = Manager.createTicket(usr, tourOption);
+                Ticket ticket = manager.createTicket(usr, tourOption);
                 tickets.add(ticket);
             }
         }
@@ -49,13 +53,13 @@ public class Alfred {
     }
     
     public void showSchedule(List<Ticket> tickets){
-        Integer totalHours = 0;
-        Integer totalGold = 0;
+        Double totalHours = .0;
+        Double totalGold = .0;
         
         if(tickets.size() > 0){
             for(Integer i=0;i<tickets.size();++i) {
-                totalHours += tickets.get(i).getDuration();
-                totalGold += tickets.get(i).getTotalAmount();
+                totalHours += tickets.get(i).getOption().getDuration();
+                totalGold += tickets.get(i).getOption().getAmountToPay();
                 System.out.println("Excursion "+String.valueOf(i)+":/n");
                 tickets.get(i).printDetail();
             }

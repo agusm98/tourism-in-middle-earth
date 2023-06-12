@@ -1,6 +1,7 @@
 package main;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import com.unlam.paradigms.tp.Alfred;
 import com.unlam.paradigms.tp.Ticket;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		String fileName = "src/source-data/users.txt";
 		File file = new File(fileName);
 		String absolutePath = file.getAbsolutePath();

@@ -13,10 +13,10 @@ import java.util.List;
 
 public final class Manager {
 
-	private static final String ATTRACTIONS_FILE_NAME = "atracctions.txt";
+	private static final String ATTRACTIONS_FILE_NAME = "attracctions.txt";
 	private static final String OFFERS_FILE_NAME = "offers.txt";
 	private static final String ITINERARY_FILE_NAME = "itinerary.txt";
-	private static final String SOURCE_PATH = "../source-data/";
+	private static final String SOURCE_PATH = "src/source-data/";
 
 	private List<TourismOption> options;
 	private List<OfferDescription> offerDescriptions;
