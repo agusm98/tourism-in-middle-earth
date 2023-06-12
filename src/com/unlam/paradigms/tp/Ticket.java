@@ -2,11 +2,11 @@ package com.unlam.paradigms.tp;
 
 public class Ticket {
     private User user;
-    private Offer offer;
+    private TourismOption option;
     
-    public Ticket(User user, Offer offer) {
+    public Ticket(User user, TourismOption option) {
         this.user = user;
-        this.offer = offer;
+        this.option = option;
         //this.setTotalAmount();
         //this.setTotalHours();
     }
@@ -22,14 +22,14 @@ public class Ticket {
         return user;
     }
     
-    public Offer getOffer() {
-        return offer;
+    public TourismOption getOption() {
+        return option;
     }
     
     public void printDetail() {
         System.out.println("Usuario: "+user.getUserName());
-        System.out.println("Compro: "+offer.getName());
-        System.out.println("Al precio de: "+offer.getPrice());
-        System.out.println("Debera tener disponible: "+offer.getHours()+" horas.");
+        System.out.println("Compro: "+option.getName());
+        System.out.println("Al precio de: "+option.getAmountToPay());
+        System.out.println("Debera tener disponible: "+option.getDuration()+" horas.");
     }
 }

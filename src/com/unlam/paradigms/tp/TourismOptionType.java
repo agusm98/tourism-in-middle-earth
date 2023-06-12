@@ -1,5 +1,5 @@
 package com.unlam.paradigms.tp;
 
-public enum AttractionType {
+public enum TourismOptionType {
 	AVENTURA, PAISAJE, DEGUSTACION, BANQUETE
 }
