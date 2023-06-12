@@ -1,20 +1,23 @@
 package com.unlam.paradigms.tp;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public final class Manager {
 
 	private static final String ATTRACTIONS_FILE_NAME = "atracctions.txt";
 	private static final String OFFERS_FILE_NAME = "offers.txt";
+	private static final String ITINERARY_FILE_NAME = "itinerary.txt";
 
-	private List<TourismOption> attractions;
+	private List<TourismOption> options;
 	private List<OfferDescription> offerDescriptions;
 
 	public Manager(final String sourcePath) throws IOException {
@@ -22,9 +25,13 @@ public final class Manager {
 		final FileReader offFileReader = new FileReader(sourcePath + OFFERS_FILE_NAME);
 		final BufferedReader attBufferReader = new BufferedReader(attFileReader);
 		final BufferedReader offBufferReader = new BufferedReader(offFileReader);
+		final List<TourismOption> attracctions = new ArrayList<>();
 
 		offerDescriptions = fetchOffers(offBufferReader);
-		attractions = fetchAttractions(attBufferReader);
+		attracctions.addAll(fetchAttractions(attBufferReader));
+
+		options = buildOffers(offerDescriptions, attracctions);
+		options.addAll(attracctions);
 
 		attBufferReader.close();
 		offBufferReader.close();
@@ -99,7 +106,7 @@ public final class Manager {
 		return filteredOptions;
 	}
 
-	private List<TourismOption> buildOffersByUserPreference(final List<OfferDescription> offerDescriptions,
+	private List<TourismOption> buildOffers(final List<OfferDescription> offerDescriptions,
 			final List<TourismOption> options) {
 		final List<String> optionNames = new ArrayList<>();
 		List<TourismOption> filteredOptions = new ArrayList<>();
@@ -117,19 +124,40 @@ public final class Manager {
 		return filteredOptions;
 	}
 
-	public Iterator<TourismOption> getOptions(final User user) {
-		final List<TourismOption> optionsByUserPreference = filterByUserPreferences(user, attractions);
-		final List<TourismOption> offers = buildOffersByUserPreference(offerDescriptions, optionsByUserPreference);
-		final Set<TourismOption> options = new HashSet<>();
-		
-		options.addAll(offers);
-		options.addAll(optionsByUserPreference);
-		options.addAll(attractions);
-		
-		return new TourismOptionIterator(user, new ArrayList<>(options));
+	private List<TourismOption> orderByType(final User user, final List<TourismOption> options) {
+		List<TourismOption> sortedOptions = new ArrayList<>(options);
+
+		Collections.sort(sortedOptions, new Comparator<TourismOption>() {
+			@Override
+			public int compare(TourismOption o1, TourismOption o2) {
+
+				if (o1.getType().equals(TourismOptionType.valueOf(user.getTouristAttraction()))) {
+
+					if (o1.getAmountToPay() == o2.getAmountToPay() && o1.getDuration() == o2.getDuration()) {
+						return 0;
+					}
+
+					if (o1.getAmountToPay() > o2.getAmountToPay()
+							|| (o1.getAmountToPay() == o2.getAmountToPay() && o1.getDuration() > o2.getDuration())) {
+						return 1;
+					}
+				}
+
+				return -1;
+			}
+		});
+
+		return sortedOptions;
 	}
 
-	public Ticket createTicket(final User user, final TourismOption option) {
+	public Iterator<TourismOption> getOptions(final User user) {
+		return new TourismOptionIterator(user, filterByUserPreferences(user, orderByType(user, options)));
+	}
+
+	public Ticket createTicket(final User user, final TourismOption option) throws IOException {
+		final FileWriter fileWriter = new FileWriter(ITINERARY_FILE_NAME);
+		final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
 		return new Ticket(user, option);
 	}
 
