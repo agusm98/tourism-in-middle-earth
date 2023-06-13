@@ -172,7 +172,7 @@ public final class Manager {
 		return new TourismOptionIterator(user, filterByUserPreferences(user, orderByType(user, options)));
 	}
 
-	public void createTicket(final User user, final TourismOption option) {
+	public void update(final User user, final TourismOption option) {
 		user.updateUser(option);
 		option.reserve(user.getUserName());
 	}
@@ -181,6 +181,9 @@ public final class Manager {
 		final FileWriter fileWriter = new FileWriter(ITINERARY_FILE_NAME);
 		final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		
+		for (Ticket ticket : tickets) {
+			bufferedWriter.append(ticket.toString() + "\n");
+		}
 		
 		bufferedWriter.close();
 	}
