@@ -179,9 +179,10 @@ public final class Manager {
 	}
 	
 	public void generateTicketFile(final List<Ticket> tickets)  throws IOException {
-		final FileWriter fileWriter = new FileWriter(ITINERARY_FILE_NAME);
+		final FileWriter fileWriter = new FileWriter(SOURCE_PATH + ITINERARY_FILE_NAME);
 		final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		
+		bufferedWriter.append("Itinerario \n\n");
 		for (Ticket ticket : tickets) {
 			bufferedWriter.append(ticket.toString() + "\n");
 		}
