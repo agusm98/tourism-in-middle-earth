@@ -3,27 +3,17 @@ package com.unlam.paradigms.tp;
 import java.util.List;
 
 public class OfferAbsolute extends Offer {
+	
+	final Double amountToPay;
 
-	public OfferAbsolute(String name, TourismOptionType type, List<TourismOption> attractions) {
-		super(name, type, attractions);
-	}
-
-	@Override
-	public Double getDuration() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Double getBaseAmount() {
-		// TODO Auto-generated method stub
-		return null;
+	public OfferAbsolute(String name, TourismOptionType type, List<TourismOption> options, final String parameter) {
+		super(name, type, options);
+		this.amountToPay = Double.valueOf(parameter);
 	}
 
 	@Override
 	public Double getAmountToPay() {
-		// TODO Auto-generated method stub
-		return null;
+		return amountToPay;
 	}
 
 }

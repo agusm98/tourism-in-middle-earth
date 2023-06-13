@@ -55,7 +55,7 @@ public class Attraction extends TourismOption {
 
 	@Override
 	public Boolean isValid(User user) {
-		return places > 0;
+		return getPlaces() > 0 && user.getAvailableHours() >= getDuration() && user.getBudget() >= getAmountToPay();
 	}
 
 }
