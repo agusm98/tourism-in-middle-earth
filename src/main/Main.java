@@ -41,8 +41,8 @@ public class Main {
 			    tickets.add(userTicket);
 			}
 		}
-
+		System.out.print("Finalizando y generando archivo... ");
 		manager.generateTicketFile(tickets);
-
+		System.out.println("Hecho. Vuelva prontos!\n");
 	}
 }
