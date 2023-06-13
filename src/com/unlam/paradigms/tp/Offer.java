@@ -66,5 +66,9 @@ public abstract class Offer extends TourismOption {
 		}
 		return true;
 	}
-
+	
+	@Override
+    public Boolean isOffer() {
+        return true;
+    }
 }

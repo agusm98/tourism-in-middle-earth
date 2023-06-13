@@ -1,5 +1,7 @@
 package com.unlam.paradigms.tp;
+import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -12,9 +14,11 @@ public class Alfred {
         this.inputScan = new Scanner(System.in);
     }
     
-    public List<Ticket> offerAttractions(User usr) {
-        List<Ticket> tickets = new ArrayList<Ticket>();
-        Iterator<TourismOption> tourOptions = Manager.getOptions(usr); //Offer iterator
+    public Ticket offerAttractions(User usr) throws IOException {
+        Manager manager = Manager.getInstance();
+        Ticket userTicket = new Ticket(usr);
+        
+        Iterator<TourismOption> tourOptions = manager.getOptions(usr); //Offer iterator
 
         while(tourOptions.hasNext()) {
             TourismOption tourOption = tourOptions.next();
@@ -32,36 +36,26 @@ public class Alfred {
                 System.out.println("Precio: "+String.valueOf(tourOption.getBaseAmount()));
             }
             
-            String usrResp = inputScan.nextLine();
-            if(usrResp.toUpperCase().contains("S")) {
-                /*
-                MANAGER JOB
-                tourOption.reserve(usr.name/usr.id);
-                usr.updateHours();
-                usr.updateGold();
-                Ticket ticket = new Ticket(usr, offer);
-                */
-                Ticket ticket = Manager.createTicket(usr, tourOption);
-                tickets.add(ticket);
+            if(getResponse().equals("S")) {
+                userTicket.addTourOption(tourOption);
+                //manager.createTicket(usr, tourOption);
+                manager.update(usr, tourOption);
             }
         }
-        return tickets;
+        return userTicket;
     }
     
-    public void showSchedule(List<Ticket> tickets){
-        Integer totalHours = 0;
-        Integer totalGold = 0;
-        
-        if(tickets.size() > 0){
-            for(Integer i=0;i<tickets.size();++i) {
-                totalHours += tickets.get(i).getDuration();
-                totalGold += tickets.get(i).getTotalAmount();
-                System.out.println("Excursion "+String.valueOf(i)+":/n");
-                tickets.get(i).printDetail();
-            }
-            System.out.println("El tiempo total es: "+totalHours);
-            System.out.println("El costo total es: "+totalGold);
+    public void showSchedule(Ticket userTicket){
+        System.out.println(userTicket.toString());
+    }
+    
+    private String getResponse(){
+        String usrResp = inputScan.nextLine().toUpperCase();
+        while(!usrResp.equals("S") && !usrResp.equals("N")) {
+            System.out.println("Respuesta invalida, solo se acepta S o N: ");
+            usrResp = inputScan.nextLine().toUpperCase();
         }
+        return usrResp;
     }
     
 }

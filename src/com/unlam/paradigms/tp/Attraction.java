@@ -1,7 +1,7 @@
 package com.unlam.paradigms.tp;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Attraction extends TourismOption {
 	private String name;
@@ -9,7 +9,7 @@ public class Attraction extends TourismOption {
 	private Double hours;
 	private Integer places;
 	private TourismOptionType type;
-	private final List<String> revervations = Collections.emptyList();
+	private List<String> reservations = new ArrayList<String>();
 
 	public Attraction(String name, Double price, Double hours, Integer places, TourismOptionType type) {
 		this.name = name;
@@ -50,12 +50,16 @@ public class Attraction extends TourismOption {
 
 	@Override
 	public void reserve(String userName) {
-		revervations.add(userName);
+		reservations.add(userName);
 	}
 
 	@Override
 	public Boolean isValid(User user) {
 		return getPlaces() > 0 && user.getAvailableHours() >= getDuration() && user.getBudget() >= getAmountToPay();
 	}
-
+	
+   @Override
+    public Boolean isOffer() {
+        return false;
+    }
 }

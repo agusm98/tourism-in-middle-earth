@@ -25,7 +25,7 @@ public class TourismOptionIterator implements Iterator<TourismOption> {
 
 	@Override
 	public TourismOption next() {
-		return options.get(currentIndex);
+		return options.get(currentIndex++);
 	}
 
 }

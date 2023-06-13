@@ -1,35 +1,61 @@
 package com.unlam.paradigms.tp;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.lang.StringBuilder;
+
 public class Ticket {
     private User user;
-    private TourismOption option;
+    private List<TourismOption> tourOptions;
     
-    public Ticket(User user, TourismOption option) {
+    public Ticket(User user) {
         this.user = user;
-        this.option = option;
-        //this.setTotalAmount();
-        //this.setTotalHours();
+        this.tourOptions = new ArrayList<TourismOption>();
     }
     
-    /*private void setTotalAmount() {
-        totalAmount = 0;
-        for(Offer offer : this.offers) {
-            this.totalAmount += offer.getPrice();
+    public void addTourOption(TourismOption tourOption) {
+        this.tourOptions.add(tourOption);
+    }
+    
+    public double getTotalAmount() {
+        double totalAmount = 0;
+        for(TourismOption tourOption : tourOptions) {
+            totalAmount += tourOption.getAmountToPay();
         }
-    }*/
+        
+        return totalAmount;
+    }
+    
+    public double getTotalDuration() {
+        double totalDuration = 0;
+        for(TourismOption tourOption : tourOptions) {
+            totalDuration += tourOption.getDuration();
+        }
+        
+        return totalDuration;
+    }
     
     public User getUser() {
         return user;
     }
     
-    public TourismOption getOption() {
-        return option;
+    public List<TourismOption> getOptions() {
+        return tourOptions;
     }
     
-    public void printDetail() {
-        System.out.println("Usuario: "+user.getUserName());
-        System.out.println("Compro: "+option.getName());
-        System.out.println("Al precio de: "+option.getAmountToPay());
-        System.out.println("Debera tener disponible: "+option.getDuration()+" horas.");
+    @Override
+    public String toString() {
+        StringBuilder detail = new StringBuilder();
+        if(tourOptions.size()>0) {
+            detail.append("Itinerario de usuario: "+user.getUserName()+"\n");
+            for(TourismOption tourOption : tourOptions) {
+                detail.append("Compro: "+tourOption.getName()+"\n");
+                detail.append("Al precio de: "+tourOption.getAmountToPay()+"\n");
+                detail.append("Debera tener disponible: "+tourOption.getDuration()+" horas.\n");
+            }
+            detail.append("\nEl tiempo total es: "+String.valueOf(getTotalDuration())+"\n\n");
+            detail.append("El costo total es: "+String.valueOf(getTotalAmount())+"\n");
+        }
+        return detail.toString();
     }
 }

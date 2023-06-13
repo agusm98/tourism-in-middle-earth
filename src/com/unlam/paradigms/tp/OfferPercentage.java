@@ -5,7 +5,7 @@ import java.util.List;
 public class OfferPercentage extends Offer {
 	
 	private Integer discount;
-
+	
 	public OfferPercentage(final String name, final TourismOptionType type, final List<TourismOption> options, final String parameter) {
 		super(name, type, options);
 		this.discount = Integer.valueOf(parameter);
