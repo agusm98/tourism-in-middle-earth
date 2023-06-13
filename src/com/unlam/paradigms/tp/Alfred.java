@@ -36,15 +36,8 @@ public class Alfred {
                 System.out.println("Precio: "+String.valueOf(tourOption.getBaseAmount()));
             }
             
-            String usrResp = inputScan.nextLine();
-            if(usrResp.toUpperCase().contains("S")) {
-                /*
-                MANAGER JOB
-                tourOption.reserve(usr.name/usr.id);
-                usr.updateHours();
-                usr.updateGold();
-                Ticket ticket = new Ticket(usr, offer);
-                */
+
+            if(getResponse().equals("S")) {
                 Ticket ticket = manager.createTicket(usr, tourOption);
                 tickets.add(ticket);
             }
@@ -66,6 +59,15 @@ public class Alfred {
             System.out.println("El tiempo total es: "+totalHours);
             System.out.println("El costo total es: "+totalGold);
         }
+    }
+    
+    private String getResponse(){
+        String usrResp = inputScan.nextLine().toUpperCase();
+        while(!usrResp.equals("S") && !usrResp.equals("N")) {
+            System.out.println("Respuesta invalida, solo se acepta S o N: ");
+            usrResp = inputScan.nextLine().toUpperCase();
+        }
+        return usrResp;
     }
     
 }
