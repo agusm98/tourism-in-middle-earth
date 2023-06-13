@@ -14,9 +14,9 @@ public class Alfred {
         this.inputScan = new Scanner(System.in);
     }
     
-    public List<Ticket> offerAttractions(User usr) throws IOException {
-        List<Ticket> tickets = new ArrayList<Ticket>();
+    public Ticket offerAttractions(User usr) throws IOException {
         Manager manager = Manager.getInstance();
+        Ticket userTicket = new Ticket(usr);
         
         Iterator<TourismOption> tourOptions = manager.getOptions(usr); //Offer iterator
 
@@ -37,27 +37,16 @@ public class Alfred {
             }
             
             if(getResponse().equals("S")) {
-                Ticket ticket = manager.createTicket(usr, tourOption);
-                tickets.add(ticket);
+                userTicket.addTourOption(tourOption);
+                //manager.createTicket(usr, tourOption);
+                //manager.update(usr, tourOption);
             }
         }
-        return tickets;
+        return userTicket;
     }
     
-    public void showSchedule(List<Ticket> tickets){
-        Double totalHours = .0;
-        Double totalGold = .0;
-        
-        if(tickets.size() > 0){
-            for(Integer i=0;i<tickets.size();++i) {
-                totalHours += tickets.get(i).getOption().getDuration();
-                totalGold += tickets.get(i).getOption().getAmountToPay();
-                System.out.println("Excursion "+String.valueOf(i)+":");
-                tickets.get(i).printDetail();
-            }
-            System.out.println("El tiempo total es: "+totalHours);
-            System.out.println("El costo total es: "+totalGold);
-        }
+    public void showSchedule(Ticket userTicket){
+        System.out.println(userTicket.toString());
     }
     
     private String getResponse(){

@@ -8,6 +8,7 @@ import java.util.List;
 import com.unlam.paradigms.tp.User;
 import com.unlam.paradigms.tp.UserLoader;
 import com.unlam.paradigms.tp.Alfred;
+import com.unlam.paradigms.tp.Manager;
 import com.unlam.paradigms.tp.Ticket;
 
 public class Main {
@@ -15,6 +16,7 @@ public class Main {
 		String fileName = "src/source-data/users.txt";
 		File file = new File(fileName);
 		String absolutePath = file.getAbsolutePath();
+		Manager manager = Manager.getInstance();
 
 		UserLoader userLoader = new UserLoader(absolutePath);
 
@@ -24,8 +26,6 @@ public class Main {
 
 		List<Ticket> tickets = new ArrayList<Ticket>();
 
-		List<Ticket> totalTickets = new ArrayList<Ticket>();
-
 		try {
 			users = userLoader.processAndParse();
 		} catch (Exception e) {
@@ -33,16 +33,14 @@ public class Main {
 		}
 
 		for (User user : users) {
-			System.out.println(user.getUserName() + "--" + user.getBudget() + "--" + user.getAvailableHours() + "--"
-					+ user.getTouristAttraction());
-			tickets = alfred.offerAttractions(user);
-
-			alfred.showSchedule(tickets);
-
-			totalTickets.addAll(tickets);
+			Ticket userTicket = alfred.offerAttractions(user);
+			if(userTicket != null) {
+			    alfred.showSchedule(userTicket);
+			    tickets.add(userTicket);
+			}
 		}
 
-		//Manager.generateFile(totalTickets);
+		//manager.generateFile(tickets);
 
 	}
 }
