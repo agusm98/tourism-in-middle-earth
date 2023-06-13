@@ -6,7 +6,7 @@ public abstract class Offer extends TourismOption {
 
 	protected String name;
 	protected TourismOptionType type;
-	private List<TourismOption> options;
+	protected List<TourismOption> options;
 
 	public Offer(String name, TourismOptionType type, List<TourismOption> options) {
 		this.name = name;
@@ -20,36 +20,47 @@ public abstract class Offer extends TourismOption {
 
 	@Override
 	public TourismOptionType getType() {
-		// TODO Auto-generated method stub
 		return type;
-	}
-	
-	@Override
-	public Double getDuration() {
-		double totalDuration = 0;
-		for (TourismOption tourismOption : options) {
-			totalDuration += tourismOption.getDuration();
-		}	
-		return totalDuration;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
+	}
+	
+	@Override
+	public Double getDuration() {
+		double duration = 0;
+		
+		for (TourismOption option : options) {
+			duration += option.getDuration();
+		}
+		
+		return duration;
+	}
+	
+	@Override
+	public Double getBaseAmount() {
+		double baseAmount = 0;
+		
+		for (TourismOption option : options) {
+			baseAmount += option.getBaseAmount();
+		}
+		
+		return baseAmount;
 	}
 
 	@Override
 	public void reserve(String userName) {
-		for (TourismOption tourismOption : options) {
-			tourismOption.reserve(userName);
+		for (TourismOption option : options) {
+			option.reserve(userName);
 		}
 	}
 	
 	@Override
 	public Boolean isValid(User user) {
-		for (TourismOption tourismOption : options) {
-			if(!tourismOption.isValid(user)) {
+		for (TourismOption option : options) {
+			if(!option.isValid(user)) {
 				return false;
 			}
 		}

@@ -39,7 +39,7 @@ public class Alfred {
             if(getResponse().equals("S")) {
                 userTicket.addTourOption(tourOption);
                 //manager.createTicket(usr, tourOption);
-                //manager.update(usr, tourOption);
+                manager.update(usr, tourOption);
             }
         }
         return userTicket;

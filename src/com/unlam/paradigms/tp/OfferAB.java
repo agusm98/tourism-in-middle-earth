@@ -1,32 +1,27 @@
 package com.unlam.paradigms.tp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OfferAB extends Offer {
 
-	public OfferAB(String name, TourismOptionType type, List<TourismOption> attractions) {
-		super(name, type, attractions);
-	}
+	private List<String> freeOptions = new ArrayList<>();
 
-	@Override
-	public Double getBaseAmount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	private Double getLastBaseAmount() {
-		return super.getAttractions().get(super.getAttractions().size() - 1).getBaseAmount();
+	public OfferAB(String name, TourismOptionType type, List<TourismOption> options, final String parameter) {
+		super(name, type, options);
+		this.freeOptions = List.of(parameter.split("\\|"));
 	}
 
 	@Override
 	public Double getAmountToPay() {
-		double totalPrice = 0;
-		
-		for (TourismOption attraction : super.getAttractions()) {
-			totalPrice += attraction.getBaseAmount();
+		double amountToPay = 0;
+
+		for (TourismOption option : options) {
+			if (!freeOptions.contains(option.getName())) {
+				amountToPay += option.getAmountToPay();
+			}
 		}
-		
-		return totalPrice - getLastBaseAmount();
+		return amountToPay;
 	}
 
 }

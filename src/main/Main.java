@@ -17,6 +17,7 @@ public class Main {
 		File file = new File(fileName);
 		String absolutePath = file.getAbsolutePath();
 		Manager manager = Manager.getInstance();
+		manager.initialize();
 
 		UserLoader userLoader = new UserLoader(absolutePath);
 
@@ -33,6 +34,7 @@ public class Main {
 		}
 
 		for (User user : users) {
+		    System.out.println("Hola "+user.getUserName());
 			Ticket userTicket = alfred.offerAttractions(user);
 			if(userTicket != null) {
 			    alfred.showSchedule(userTicket);
@@ -40,7 +42,7 @@ public class Main {
 			}
 		}
 
-		//manager.generateFile(tickets);
+		manager.generateTicketFile(tickets);
 
 	}
 }

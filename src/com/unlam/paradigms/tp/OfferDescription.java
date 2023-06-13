@@ -7,13 +7,15 @@ public class OfferDescription {
 	private List<String> attractionNames;
 	private OfferType offerType;
 	private TourismOptionType tourismOptionType;
+	private String parameter;
 
 	public OfferDescription(String name, List<String> attractionNames, OfferType offerType,
-			TourismOptionType tourismOptionType) {
+			TourismOptionType tourismOptionType, final String parameter) {
 		this.name = name;
 		this.attractionNames = attractionNames;
 		this.offerType = offerType;
 		this.tourismOptionType = tourismOptionType;
+		this.parameter = parameter;
 	}
 
 	public String getName() {
@@ -32,16 +34,20 @@ public class OfferDescription {
 		return tourismOptionType;
 	}
 	
+	public String getParameter() {
+		return parameter;
+	}
+	
 	public Offer createOffer(final List<TourismOption> attractions) {
 		switch (offerType) {
 		case DISCOUNT: {
-			return new OfferPercentage(name, tourismOptionType, attractions);
+			return new OfferPercentage(name, tourismOptionType, attractions, parameter);
 		}
 		case AxB: {
-			return new OfferAB(name, tourismOptionType, attractions);
+			return new OfferAB(name, tourismOptionType, attractions, parameter);
 		}
 		case ABSOLUTE: {
-			return new OfferAbsolute(name, tourismOptionType, attractions);
+			return new OfferAbsolute(name, tourismOptionType, attractions, parameter);
 		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + offerType);

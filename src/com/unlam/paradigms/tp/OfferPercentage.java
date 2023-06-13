@@ -3,26 +3,22 @@ package com.unlam.paradigms.tp;
 import java.util.List;
 
 public class OfferPercentage extends Offer {
-
-	public OfferPercentage(String name, TourismOptionType type, List<TourismOption> attractions) {
-		super(name, type, attractions);
+	
+	private Integer discount;
+	
+	public OfferPercentage(final String name, final TourismOptionType type, final List<TourismOption> options, final String parameter) {
+		super(name, type, options);
+		this.discount = Integer.valueOf(parameter);
 	}
 
 	@Override
-	public Double getBaseAmount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Double getAmountToPay() {		
-		double totalPrice = 0;
+	public Double getAmountToPay() {
+		double amountToPay = 0;
 		
-		for (TourismOption attraction : super.getAttractions()) {
-			totalPrice += attraction.getBaseAmount();
+		for (TourismOption option : options) {
+			amountToPay += option.getAmountToPay();
 		}
-		
-		return totalPrice * 0.8;
+		return (amountToPay * discount) / 100;
 	}
 
 }
