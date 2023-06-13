@@ -36,7 +36,6 @@ public class Alfred {
                 System.out.println("Precio: "+String.valueOf(tourOption.getBaseAmount()));
             }
             
-
             if(getResponse().equals("S")) {
                 Ticket ticket = manager.createTicket(usr, tourOption);
                 tickets.add(ticket);
@@ -53,7 +52,7 @@ public class Alfred {
             for(Integer i=0;i<tickets.size();++i) {
                 totalHours += tickets.get(i).getOption().getDuration();
                 totalGold += tickets.get(i).getOption().getAmountToPay();
-                System.out.println("Excursion "+String.valueOf(i)+":/n");
+                System.out.println("Excursion "+String.valueOf(i)+":");
                 tickets.get(i).printDetail();
             }
             System.out.println("El tiempo total es: "+totalHours);
