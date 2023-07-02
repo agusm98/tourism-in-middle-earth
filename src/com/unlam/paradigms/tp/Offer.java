@@ -11,10 +11,10 @@ public abstract class Offer extends TourismOption {
 	protected List<TourismOption> tourOptions;
 
 	public Offer(String name, TourismOptionType type, List<TourismOption> tourOptions) {
-		// this.name = name;
+		this.name = name;
 		this.type = type;
 		this.tourOptions = tourOptions;
-		setName();
+		setAttractionNames();
 	}
 
 	public List<TourismOption> getAttractions() {
@@ -60,19 +60,19 @@ public abstract class Offer extends TourismOption {
 		}
 	}
 
-	private void setName() {
+	private void setAttractionNames() {
 		List<String> formatNames = new ArrayList<String>();
 		for (TourismOption tourOption : this.tourOptions) {
 			formatNames.add(tourOption.getName());
 		}
-		this.name = "[" + String.join(", ", formatNames) + "]";
+		this.attractNames = "[" + String.join(", ", formatNames) + "]";
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder detail = new StringBuilder();
 		detail.append("Promocion\n");
-		detail.append("Atracciones incluidas: " + this.getName() + "\n");
+		detail.append("Atracciones incluidas: " + this.attractNames + "\n");
 		detail.append("Duracion: " + String.valueOf(this.getDuration()) + " hora(s)\n");
 		detail.append("Precio original: " + String.valueOf(this.getBaseAmount()) + " oro\n");
 		detail.append("Precio con descuento: " + String.valueOf(this.getAmountToPay()) + " oro\n");

@@ -1,0 +1,40 @@
+Itinerario de todos los usuarios:
+Itinerario de usuario: Frodo
+Compro: Moria
+Al precio de: 10.0 oro
+Debera tener disponible: 2.0 hora(s).
+
+El tiempo total es: 2.0 hora(s)
+
+El costo total es: 10.0 oro
+*---   ---*
+Itinerario de usuario: Agustin
+Compro: Erebor
+Al precio de: 12.0 oro
+Debera tener disponible: 3.0 hora(s).
+Compro: La Comarca
+Al precio de: 3.0 oro
+Debera tener disponible: 6.5 hora(s).
+
+El tiempo total es: 9.5 hora(s)
+
+El costo total es: 15.0 oro
+*---   ---*
+Itinerario de usuario: Tomi
+Compro: Paquete3
+Al precio de: 21.0 oro
+Debera tener disponible: 6.0 hora(s).
+Compro: Minas Tirith
+Al precio de: 5.0 oro
+Debera tener disponible: 2.5 hora(s).
+Compro: La Comarca
+Al precio de: 3.0 oro
+Debera tener disponible: 6.5 hora(s).
+Compro: Bosque Negro
+Al precio de: 3.0 oro
+Debera tener disponible: 4.0 hora(s).
+
+El tiempo total es: 19.0 hora(s)
+
+El costo total es: 32.0 oro
+*---   ---*
