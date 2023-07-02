@@ -17,11 +17,11 @@ public final class Manager {
 	private static final String SOURCE_PATH = "src/source-data/";
 
 	private List<TourismOption> tourOptions;
-	private List<OfferDescription> offerDescriptions;
+	//private List<OfferDescription> offerDescriptions;
 	private static Manager INSTANCE; 
 	
 	
-	public static Manager getInstance() throws Exception {
+	public static Manager getInstance() throws Exception { //Patron singleton
         if(INSTANCE == null) {
             INSTANCE = new Manager();
         }
@@ -37,7 +37,7 @@ public final class Manager {
 		
 		this.tourOptions = fetchAttractions(attBufferReader);
 		
-		this.offerDescriptions = fetchOffers(offBufferReader);
+		List<OfferDescription> offerDescriptions = fetchOffers(offBufferReader);
 		
 		this.tourOptions.addAll(buildOffers(offerDescriptions));
 

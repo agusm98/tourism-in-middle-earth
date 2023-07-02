@@ -17,32 +17,16 @@ public class User {
 		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.name = userName;
-	}
-
 	public Double getAvailableHours() {
 		return availableHours;
-	}
-
-	public void setAvailableHours(Double availableHours) {
-		this.availableHours = availableHours;
 	}
 
 	public Double getBudget() {
 		return budget;
 	}
 
-	public void setBudget(Double budget) {
-		this.budget = budget;
-	}
-
 	public TourismOptionType getTourType() {
 		return tourType;
-	}
-
-	public void setTouristAttraction(String tourType) {
-		this.tourType = TourismOptionType.valueOf(tourType);
 	}
 	
 	public boolean updateUser(TourismOption tourOption) {
