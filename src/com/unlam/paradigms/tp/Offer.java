@@ -1,21 +1,24 @@
 package com.unlam.paradigms.tp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Offer extends TourismOption {
 
 	protected String name;
+	protected String attractNames;
 	protected TourismOptionType type;
-	protected List<TourismOption> options;
+	protected List<TourismOption> tourOptions;
 
-	public Offer(String name, TourismOptionType type, List<TourismOption> options) {
-		this.name = name;
+	public Offer(String name, TourismOptionType type, List<TourismOption> tourOptions) {
+		//this.name = name;
 		this.type = type;
-		this.options = options;
+		this.tourOptions = tourOptions;
+		setName();
 	}
 
 	public List<TourismOption> getAttractions() {
-		return options;
+		return tourOptions;
 	}
 
 	@Override
@@ -32,8 +35,8 @@ public abstract class Offer extends TourismOption {
 	public Double getDuration() {
 		double duration = 0;
 		
-		for (TourismOption option : options) {
-			duration += option.getDuration();
+		for (TourismOption tourOption : tourOptions) {
+			duration += tourOption.getDuration();
 		}
 		
 		return duration;
@@ -43,8 +46,8 @@ public abstract class Offer extends TourismOption {
 	public Double getBaseAmount() {
 		double baseAmount = 0;
 		
-		for (TourismOption option : options) {
-			baseAmount += option.getBaseAmount();
+		for (TourismOption tourOption : tourOptions) {
+			baseAmount += tourOption.getBaseAmount();
 		}
 		
 		return baseAmount;
@@ -52,15 +55,33 @@ public abstract class Offer extends TourismOption {
 
 	@Override
 	public void reserve(String userName) {
-		for (TourismOption option : options) {
-			option.reserve(userName);
+		for(TourismOption tourOption : tourOptions) {
+			tourOption.reserve(userName);
 		}
+	}
+	
+	private void setName() {
+		List<String> formatNames = new ArrayList<String>();
+		for(TourismOption tourOption : this.tourOptions) {
+			formatNames.add(tourOption.getName());
+		}
+		this.name = "["+String.join(", ", formatNames)+"]";
+	}
+	
+
+	@Override
+	public void showDescription() {
+        System.out.println("Promocion");
+        System.out.println("Atracciones incluidas: "+this.getName());
+        System.out.println("Duracion: "+String.valueOf(this.getDuration()));
+        System.out.println("Precio original: "+String.valueOf(this.getBaseAmount()));
+        System.out.println("Precio con descuento: "+String.valueOf(this.getAmountToPay()));
 	}
 	
 	@Override
 	public Boolean isValid(User user) {
-		for (TourismOption option : options) {
-			if(!option.isValid(user)) {
+		for(TourismOption tourOption : tourOptions) {
+			if(!tourOption.isValid(user)) {
 				return false;
 			}
 		}

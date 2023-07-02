@@ -6,8 +6,8 @@ public class OfferPercentage extends Offer {
 	
 	private Integer discount;
 	
-	public OfferPercentage(final String name, final TourismOptionType type, final List<TourismOption> options, final String parameter) {
-		super(name, type, options);
+	public OfferPercentage(final String name, final TourismOptionType type, final List<TourismOption> tourOptions, final String parameter) {
+		super(name, type, tourOptions);
 		this.discount = Integer.valueOf(parameter);
 	}
 
@@ -15,8 +15,8 @@ public class OfferPercentage extends Offer {
 	public Double getAmountToPay() {
 		double amountToPay = 0;
 		
-		for (TourismOption option : options) {
-			amountToPay += option.getAmountToPay();
+		for (TourismOption tourOption : tourOptions) {
+			amountToPay += tourOption.getAmountToPay();
 		}
 		return (amountToPay * discount) / 100;
 	}

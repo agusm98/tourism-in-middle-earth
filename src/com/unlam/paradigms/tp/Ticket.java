@@ -55,6 +55,8 @@ public class Ticket {
             }
             detail.append("\nEl tiempo total es: "+String.valueOf(getTotalDuration())+"\n\n");
             detail.append("El costo total es: "+String.valueOf(getTotalAmount())+"\n");
+        } else {
+        	detail.append("Usuario sin itinenario: "+user.getUserName()+"\n");
         }
         return detail.toString();
     }

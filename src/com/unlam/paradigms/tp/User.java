@@ -4,13 +4,13 @@ public class User {
 	private String name;
 	private Double budget;
 	private Double availableHours;
-	private String touristAttraction;
+	private TourismOptionType tourType;
 
-	public User(String name, Double budget, Double availableHours, String touristAttraction) {
+	public User(String name, Double budget, Double availableHours, TourismOptionType tourType) {
 		this.name = name;
 		this.budget = budget;
 		this.availableHours = availableHours;
-		this.touristAttraction = touristAttraction;
+		this.tourType = tourType;
 	}
 
 	public String getUserName() {
@@ -37,21 +37,18 @@ public class User {
 		this.budget = budget;
 	}
 
-	public String getTouristAttraction() {
-		return touristAttraction;
+	public TourismOptionType getTourType() {
+		return tourType;
 	}
 
-	public void setTouristAttraction(String touristAttraction) {
-		this.touristAttraction = touristAttraction;
+	public void setTouristAttraction(String tourType) {
+		this.tourType = TourismOptionType.valueOf(tourType);
 	}
 	
 	public boolean updateUser(TourismOption tourOption) {
-
-		if (this.budget - tourOption.getAmountToPay() >= 0 && this.availableHours - tourOption.getDuration() >= 0) {
-
+		if (this.budget >= tourOption.getAmountToPay() && this.availableHours >= tourOption.getDuration()) {
 			this.budget -= tourOption.getAmountToPay();
 			this.availableHours -= tourOption.getDuration();
-			
 			return true;
 		}
 		

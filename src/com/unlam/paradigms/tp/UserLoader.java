@@ -29,7 +29,7 @@ public class UserLoader {
 				String name = elements[0];
 				Double budget = Double.parseDouble(elements[1]);
 				Double availableHours = Double.parseDouble(elements[2]);
-				String touristAttraction = elements[3];
+				TourismOptionType touristAttraction = TourismOptionType.valueOf(elements[3]);;
 
 				User user = new User(name, budget, availableHours, touristAttraction);
 

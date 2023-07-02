@@ -1,8 +1,5 @@
 package com.unlam.paradigms.tp;
-import java.io.IOException;
-import java.util.ArrayList;
 
-import java.util.List;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -14,7 +11,7 @@ public class Alfred {
         this.inputScan = new Scanner(System.in);
     }
     
-    public Ticket offerAttractions(User usr) throws IOException {
+    public Ticket offerAttractions(User usr) throws Exception {
         Manager manager = Manager.getInstance();
         Ticket userTicket = new Ticket(usr);
         
@@ -22,24 +19,10 @@ public class Alfred {
 
         while(tourOptions.hasNext()) {
             TourismOption tourOption = tourOptions.next();
-            //SUG: tourOption.showDescription()
-            if(tourOption.isOffer()) {
-                System.out.println("Promocion");
-                System.out.println("Atracciones incluidas: "+tourOption.getName());
-                System.out.println("Duracion: "+String.valueOf(tourOption.getDuration()));
-                System.out.println("Precio original: "+String.valueOf(tourOption.getBaseAmount()));
-                System.out.println("Precio con descuento: "+String.valueOf(tourOption.getAmountToPay()));
-            } else {
-                System.out.println("Atraccion");
-                System.out.println("Nombre: "+tourOption.getName());
-                System.out.println("Duracion: "+String.valueOf(tourOption.getDuration()));
-                System.out.println("Precio: "+String.valueOf(tourOption.getBaseAmount()));
-            }
+            tourOption.showDescription();
             
             if(getResponse().equals("S")) {
-                userTicket.addTourOption(tourOption);
-                //manager.createTicket(usr, tourOption);
-                manager.update(usr, tourOption);
+                manager.checkout(userTicket, tourOption);
             }
         }
         return userTicket;
@@ -58,4 +41,8 @@ public class Alfred {
         return usrResp;
     }
     
+    @Override
+    protected void finalize() {
+    	this.inputScan.close();
+    }
 }

@@ -1,7 +1,6 @@
 package main;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +11,11 @@ import com.unlam.paradigms.tp.Manager;
 import com.unlam.paradigms.tp.Ticket;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		String fileName = "src/source-data/users.txt";
 		File file = new File(fileName);
 		String absolutePath = file.getAbsolutePath();
 		Manager manager = Manager.getInstance();
-		manager.initialize();
 
 		UserLoader userLoader = new UserLoader(absolutePath);
 
