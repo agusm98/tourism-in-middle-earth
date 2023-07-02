@@ -11,7 +11,7 @@ public abstract class Offer extends TourismOption {
 	protected List<TourismOption> tourOptions;
 
 	public Offer(String name, TourismOptionType type, List<TourismOption> tourOptions) {
-		//this.name = name;
+		// this.name = name;
 		this.type = type;
 		this.tourOptions = tourOptions;
 		setName();
@@ -30,66 +30,67 @@ public abstract class Offer extends TourismOption {
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
 	public Double getDuration() {
 		double duration = 0;
-		
+
 		for (TourismOption tourOption : tourOptions) {
 			duration += tourOption.getDuration();
 		}
-		
+
 		return duration;
 	}
-	
+
 	@Override
 	public Double getBaseAmount() {
 		double baseAmount = 0;
-		
+
 		for (TourismOption tourOption : tourOptions) {
 			baseAmount += tourOption.getBaseAmount();
 		}
-		
+
 		return baseAmount;
 	}
 
 	@Override
 	public void reserve(String userName) {
-		for(TourismOption tourOption : tourOptions) {
+		for (TourismOption tourOption : tourOptions) {
 			tourOption.reserve(userName);
 		}
 	}
-	
+
 	private void setName() {
 		List<String> formatNames = new ArrayList<String>();
-		for(TourismOption tourOption : this.tourOptions) {
+		for (TourismOption tourOption : this.tourOptions) {
 			formatNames.add(tourOption.getName());
 		}
-		this.name = "["+String.join(", ", formatNames)+"]";
+		this.name = "[" + String.join(", ", formatNames) + "]";
 	}
-	
 
 	@Override
-	public void showDescription() {
-        System.out.println("Promocion");
-        System.out.println("Atracciones incluidas: "+this.getName());
-        System.out.println("Duracion: "+String.valueOf(this.getDuration()));
-        System.out.println("Precio original: "+String.valueOf(this.getBaseAmount()));
-        System.out.println("Precio con descuento: "+String.valueOf(this.getAmountToPay()));
+	public String toString() {
+		StringBuilder detail = new StringBuilder();
+		detail.append("Promocion\n");
+		detail.append("Atracciones incluidas: " + this.getName() + "\n");
+		detail.append("Duracion: " + String.valueOf(this.getDuration()) + " hora(s)\n");
+		detail.append("Precio original: " + String.valueOf(this.getBaseAmount()) + " oro\n");
+		detail.append("Precio con descuento: " + String.valueOf(this.getAmountToPay()) + " oro\n");
+		return detail.toString();
 	}
-	
+
 	@Override
 	public Boolean isValid(User user) {
-		for(TourismOption tourOption : tourOptions) {
-			if(!tourOption.isValid(user)) {
+		for (TourismOption tourOption : tourOptions) {
+			if (!tourOption.isValid(user)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	@Override
-    public Boolean isOffer() {
-        return true;
-    }
+	public Boolean isOffer() {
+		return true;
+	}
 }

@@ -47,30 +47,30 @@ public class Attraction extends TourismOption {
 	public Double getAmountToPay() {
 		return price;
 	}
-	
+
 	@Override
 	public void reserve(String userName) {
 		reservations.add(userName);
 	}
-	
+
 	@Override
-	public void showDescription() {
-        System.out.println("Atraccion");
-        System.out.println("Nombre: "+this.name);
-        System.out.println("Duracion: "+String.valueOf(this.hours));
-        System.out.println("Precio: "+String.valueOf(this.price));
+	public String toString() {
+		StringBuilder detail = new StringBuilder();
+		detail.append("Atraccion\n");
+		detail.append("Nombre: " + this.name + "\n");
+		detail.append("Duracion: " + String.valueOf(this.hours) + " hora(s)\n");
+		detail.append("Precio: " + String.valueOf(this.price) + " oro\n");
+		return detail.toString();
 	}
 
 	@Override
 	public Boolean isValid(User user) {
-		return this.places > 0
-				&& user.getAvailableHours() >= this.hours
-				&& user.getBudget() >= this.price
+		return this.places > 0 && user.getAvailableHours() >= this.hours && user.getBudget() >= this.price
 				&& !this.reservations.contains(user.getUserName());
 	}
-	
-   @Override
-    public Boolean isOffer() {
-        return false;
-    }
+
+	@Override
+	public Boolean isOffer() {
+		return false;
+	}
 }

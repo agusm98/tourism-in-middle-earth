@@ -17,28 +17,26 @@ public final class Manager {
 	private static final String SOURCE_PATH = "src/source-data/";
 
 	private List<TourismOption> tourOptions;
-	//private List<OfferDescription> offerDescriptions;
-	private static Manager INSTANCE; 
-	
-	
-	public static Manager getInstance() throws Exception { //Patron singleton
-        if(INSTANCE == null) {
-            INSTANCE = new Manager();
-        }
-        
-        return INSTANCE;
-    }
-	
+	private static Manager INSTANCE;
+
+	public static Manager getInstance() throws Exception { // Patron singleton
+		if (INSTANCE == null) {
+			INSTANCE = new Manager();
+		}
+
+		return INSTANCE;
+	}
+
 	private Manager() throws Exception {
 		final FileReader attFileReader = new FileReader(SOURCE_PATH + ATTRACTIONS_FILE_NAME);
 		final FileReader offFileReader = new FileReader(SOURCE_PATH + OFFERS_FILE_NAME);
 		final BufferedReader attBufferReader = new BufferedReader(attFileReader);
 		final BufferedReader offBufferReader = new BufferedReader(offFileReader);
-		
+
 		this.tourOptions = fetchAttractions(attBufferReader);
-		
+
 		List<OfferDescription> offerDescriptions = fetchOffers(offBufferReader);
-		
+
 		this.tourOptions.addAll(buildOffers(offerDescriptions));
 
 		attBufferReader.close();
@@ -59,9 +57,8 @@ public final class Manager {
 				final TourismOptionType tourismOptionType = TourismOptionType.valueOf(parameterPartipant[3]);
 				final String offerParameter = parameterPartipant[4];
 
-				offerDescriptions.add(
-						new OfferDescription(offerDescriptionName, attractions, offerType, tourismOptionType, offerParameter)
-				);
+				offerDescriptions.add(new OfferDescription(offerDescriptionName, attractions, offerType,
+						tourismOptionType, offerParameter));
 			}
 		}
 
@@ -88,10 +85,10 @@ public final class Manager {
 
 		return attractions;
 	}
-	
+
 	private TourismOption getTourOption(String tourName) {
-		for(TourismOption tourOption : this.tourOptions) {
-			if(tourName.equals(tourOption.getName())) {
+		for (TourismOption tourOption : this.tourOptions) {
+			if (tourName.equals(tourOption.getName())) {
 				return tourOption;
 			}
 		}
@@ -104,13 +101,16 @@ public final class Manager {
 
 		for (OfferDescription offerDescription : offerDescriptions) {
 			offerOptions = new ArrayList<TourismOption>();
-			
-			for(String tourName : offerDescription.getAttractionNames()) {
+
+			for (String tourName : offerDescription.getAttractionNames()) {
 				TourismOption tourOption = getTourOption(tourName);
-				if(tourOption != null) offerOptions.add(tourOption);
-				else throw new Exception("No se encuentra la atraccion: "+tourName);
+				if (tourOption != null) {
+					offerOptions.add(tourOption);
+				} else {
+					throw new Exception("No se encuentra la atraccion: " + tourName);
+				}
 			}
-			
+
 			offers.add(offerDescription.createOffer(offerOptions));
 		}
 
@@ -122,24 +122,22 @@ public final class Manager {
 	}
 
 	public void checkout(Ticket userTicket, TourismOption tourOption) {
-		if(userTicket.getUser().updateUser(tourOption)) {
+		if (userTicket.getUser().updateUser(tourOption)) {
 			tourOption.reserve(userTicket.getUser().getUserName());
 			userTicket.addTourOption(tourOption);
 		}
 	}
-	
+
 	public void generateTicketFile(final List<Ticket> tickets) throws IOException {
 		final FileWriter fileWriter = new FileWriter(SOURCE_PATH + ITINERARY_FILE_NAME);
 		final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		
+
 		bufferedWriter.append("Itinerario de todos los usuarios:\n");
 		for (Ticket ticket : tickets) {
-			bufferedWriter.append(ticket.toString()
-			+ "*---   ---*\n");
+			bufferedWriter.append(ticket.toString() + "*---   ---*\n");
 		}
-		
+
 		bufferedWriter.close();
 		fileWriter.close();
 	}
-
 }
