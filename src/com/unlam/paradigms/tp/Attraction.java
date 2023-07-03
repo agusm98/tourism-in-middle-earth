@@ -1,9 +1,11 @@
 package com.unlam.paradigms.tp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.ArrayList;
 
 public class Attraction extends TourismOption {
+
 	private String name;
 	private Double price;
 	private Double hours;
@@ -51,6 +53,7 @@ public class Attraction extends TourismOption {
 	@Override
 	public void reserve(String userName) {
 		reservations.add(userName);
+		--this.places;
 	}
 
 	@Override
@@ -72,5 +75,19 @@ public class Attraction extends TourismOption {
 	@Override
 	public Boolean isOffer() {
 		return false;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attraction other = (Attraction) obj;
+		return Objects.equals(hours, other.hours) && Objects.equals(name, other.name)
+				&& Objects.equals(places, other.places) && Objects.equals(price, other.price)
+				&& Objects.equals(reservations, other.reservations) && type == other.type;
 	}
 }

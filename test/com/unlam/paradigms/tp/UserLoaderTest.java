@@ -14,10 +14,6 @@ public class UserLoaderTest {
 
 		List<User> expected = new ArrayList<User>();
 
-		//expected.add(new User("jorge", 100.0, 5.0, "Mordor"));
-		//expected.add(new User("agustin", 200.5, 10.0, "Moria"));
-		//expected.add(new User("Tomi", 300.0, 2.0, "Mordor"));
-
 		String filePath = "test/source-data/users.txt";
 		File file = new File(filePath);
 
@@ -38,7 +34,6 @@ public class UserLoaderTest {
 			assertEquals(expectedUser.getUserName(), actualUser.getUserName());
 			assertEquals(expectedUser.getBudget(), actualUser.getBudget());
 			assertEquals(expectedUser.getAvailableHours(), actualUser.getAvailableHours());
-			//assertEquals(expectedUser.getTouristAttraction(), actualUser.getTouristAttraction());
 		}
 
 	}

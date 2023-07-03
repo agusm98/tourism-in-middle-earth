@@ -17,13 +17,19 @@ public abstract class TourismOption implements Comparable<TourismOption> {
 	public abstract Boolean isValid(final User user);
 
 	public abstract Boolean isOffer();
+	
+	public abstract boolean equals(Object obj);
 
 	@Override
 	public int compareTo(TourismOption tO) {
 
 		if (this.isOffer() && !tO.isOffer()) {
 			return -1;
-		} else {
+		} 
+		else if(!this.isOffer() && tO.isOffer() ) {
+			return 1;
+		}
+		else {
 			if (this.getAmountToPay() < tO.getAmountToPay()) {
 				return 1;
 			} else if (this.getAmountToPay() > tO.getAmountToPay()) {
