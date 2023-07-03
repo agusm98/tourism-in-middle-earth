@@ -53,7 +53,7 @@ public class Alfred {
 	}
 
 	public void expendFile(List<Ticket> tickets) throws IOException {
-		if (tickets.isEmpty()) {
+		if (tickets.isEmpty() || tickets == null) {
 			System.out.println("Ejecucion sin usuarios.");
 		} else {
 			System.out.print("Finalizando y generando archivo... ");
