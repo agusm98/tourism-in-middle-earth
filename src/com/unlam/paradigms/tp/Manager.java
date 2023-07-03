@@ -10,11 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public final class Manager {
-
-	private static final String ATTRACTIONS_FILE_NAME = "attracctions.txt";
-	private static final String OFFERS_FILE_NAME = "offers.txt";
+	
+	private static String ATTRACTIONS_FILE_NAME;
+	private static String OFFERS_FILE_NAME;
 	private static final String ITINERARY_FILE_NAME = "itinerary.txt";
-	private static final String SOURCE_PATH = "src/source-data/";
+	private static String SOURCE_PATH;
 
 	private List<TourismOption> tourOptions;
 	private static Manager INSTANCE;
@@ -28,19 +28,36 @@ public final class Manager {
 	}
 
 	private Manager() throws Exception {
-		final FileReader attFileReader = new FileReader(SOURCE_PATH + ATTRACTIONS_FILE_NAME);
-		final FileReader offFileReader = new FileReader(SOURCE_PATH + OFFERS_FILE_NAME);
-		final BufferedReader attBufferReader = new BufferedReader(attFileReader);
-		final BufferedReader offBufferReader = new BufferedReader(offFileReader);
-
-		this.tourOptions = fetchAttractions(attBufferReader);
-
-		List<OfferDescription> offerDescriptions = fetchOffers(offBufferReader);
-
-		this.tourOptions.addAll(buildOffers(offerDescriptions));
-
-		attBufferReader.close();
-		offBufferReader.close();
+		if(SOURCE_PATH == null) {
+			SOURCE_PATH = "src/source-data/"; //Default
+		}
+		
+		if(ATTRACTIONS_FILE_NAME != null) {
+			final FileReader attFileReader = new FileReader(SOURCE_PATH + ATTRACTIONS_FILE_NAME);
+			final BufferedReader attBufferReader = new BufferedReader(attFileReader);
+			this.tourOptions = fetchAttractions(attBufferReader);
+			attBufferReader.close();
+		}
+		
+		if(OFFERS_FILE_NAME != null) {
+			final FileReader offFileReader = new FileReader(SOURCE_PATH + OFFERS_FILE_NAME);
+			final BufferedReader offBufferReader = new BufferedReader(offFileReader);
+			List<OfferDescription> offerDescriptions = fetchOffers(offBufferReader);
+			this.tourOptions.addAll(buildOffers(offerDescriptions));
+			offBufferReader.close();
+		}
+	}
+	
+	public static void setAttractionPath(String attractionPath) {
+		ATTRACTIONS_FILE_NAME = attractionPath;
+	}
+	
+	public static void setOfferPath(String offerPath) {
+		OFFERS_FILE_NAME = offerPath;
+	}
+	
+	public static void setSourcePath(String srcPath) {
+		SOURCE_PATH = srcPath;
 	}
 
 	private List<OfferDescription> fetchOffers(final BufferedReader bfReader) throws IOException {
