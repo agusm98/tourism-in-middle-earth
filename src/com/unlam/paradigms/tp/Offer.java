@@ -2,6 +2,7 @@ package com.unlam.paradigms.tp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Offer extends TourismOption {
 
@@ -92,5 +93,18 @@ public abstract class Offer extends TourismOption {
 	@Override
 	public Boolean isOffer() {
 		return true;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Offer other = (Offer) obj;
+		return Objects.equals(attractNames, other.attractNames) && Objects.equals(name, other.name)
+				&& Objects.equals(tourOptions, other.tourOptions) && type == other.type;
 	}
 }

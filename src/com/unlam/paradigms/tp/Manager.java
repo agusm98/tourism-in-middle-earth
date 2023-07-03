@@ -104,6 +104,7 @@ public final class Manager {
 
 			for (String tourName : offerDescription.getAttractionNames()) {
 				TourismOption tourOption = getTourOption(tourName);
+
 				if (tourOption != null) {
 					offerOptions.add(tourOption);
 				} else {

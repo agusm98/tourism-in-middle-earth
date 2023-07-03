@@ -2,6 +2,7 @@ package com.unlam.paradigms.tp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class OfferAB extends Offer {
 
@@ -24,4 +25,15 @@ public class OfferAB extends Offer {
 		return amountToPay;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OfferAB other = (OfferAB) obj;
+		return Objects.equals(freeOptions, other.freeOptions);
+	}
 }

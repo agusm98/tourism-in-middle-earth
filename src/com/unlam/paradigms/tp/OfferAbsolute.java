@@ -1,6 +1,7 @@
 package com.unlam.paradigms.tp;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OfferAbsolute extends Offer {
 	
@@ -16,4 +17,15 @@ public class OfferAbsolute extends Offer {
 		return amountToPay;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OfferAbsolute other = (OfferAbsolute) obj;
+		return Objects.equals(amountToPay, other.amountToPay);
+	}
 }
