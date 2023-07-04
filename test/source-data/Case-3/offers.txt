@@ -1,4 +1,3 @@
-PACKAGE|ATTRACTION|OFFER|TOURISM OPTION TYPE|FREE ATTRACTION
 Paquete1,Minas Tirith|Abismo de Helm|Erebor,AxB,PAISAJE,Abismo de Helm|Erebor
 Paquete2,Selva|Templo de Anubis|Minas Tirith,ABSOLUTE,PAISAJE,15
 Paquete3,Erebor|Abismo de Helm|Templo de Anubis,DISCOUNT,PAISAJE,25
