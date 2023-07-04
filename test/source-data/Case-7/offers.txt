@@ -1,0 +1,8 @@
+PACKAGE|ATTRACTION|OFFER|TOURISM OPTION TYPE|FREE ATTRACTION
+Paquete1,Minas Tirith|Abismo de Helm|Erebor,AxB,PAISAJE,Abismo de Helm|Erebor
+Paquete2,Selva|Templo de Anubis|Minas Tirith,ABSOLUTE,PAISAJE,15
+Paquete3,Erebor|Abismo de Helm|Templo de Anubis,DISCOUNT,PAISAJE,25
+Paquete4,El irlandes|La Comarca|La Casa,ABSOLUTE,DEGUSTACION,20
+Paquete5,La Casa|El irlandes|Lothlórien,DISCOUNT,DEGUSTACION,30
+Paquete6,Moria|Mordor|Selva Embrujada,DISCOUNT,AVENTURA,25
+Paquete7,Louie|El boliche de dario|La nona,AxB,BANQUETE,El boliche de dario
