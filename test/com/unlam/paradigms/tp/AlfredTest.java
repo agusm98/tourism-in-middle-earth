@@ -12,7 +12,7 @@ public class AlfredTest {
 	@Test
 	public void offerAttractionWithoutBudget() throws Exception {
 		Manager.setSourcePath("test/source-data/");
-		Manager.setAttractionPath("Case-1/attractions.txt");
+		Manager.setAttractionPath("Case-1/attracctions.txt");
 		
 		//Manager.setOfferPath();
 		Alfred alfred = new Alfred();
@@ -30,7 +30,7 @@ public class AlfredTest {
 	@Test
 	public void offerAttractionWithoutHours() throws Exception {
 		Manager.setSourcePath("test/source-data/");
-		Manager.setAttractionPath("Case-1/attractions.txt");
+		Manager.setAttractionPath("Case-1/attracctions.txt");
 		
 		//Manager.setOfferPath();
 		Alfred alfred = new Alfred();
@@ -47,7 +47,7 @@ public class AlfredTest {
 	@Test
 	public void offerAttractionCheckout() throws Exception {
 		Manager.setSourcePath("test/source-data/");
-		Manager.setAttractionPath("Case-1/attractions.txt");
+		Manager.setAttractionPath("Case-1/attracctions.txt");
 		
 		//Manager.setOfferPath();
 		Alfred alfred = new Alfred();

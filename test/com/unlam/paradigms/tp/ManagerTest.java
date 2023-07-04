@@ -10,7 +10,7 @@ import org.junit.Test;
 public class ManagerTest {
 
 	@Test
-	public void testUserBuyAnythingHeCan() {
+	public void testUserBuyAnythingHeCan() throws Exception {
 
 		// Attractions to sell
 		TourismOption firstAttraction = new Attraction("Selva", 20.5, 1.0, 7, TourismOptionType.PAISAJE);
@@ -37,35 +37,64 @@ public class ManagerTest {
 		Manager.setOfferPath("offers.txt");
 		Manager.setSourcePath("test/source-data/Case-3/");
 
-		try {
+		UserLoader aLoader = new UserLoader("test/source-data/Case-3/users.txt");
+		User aUser = aLoader.processAndParse().remove(0);
 
-			UserLoader aLoader = new UserLoader("test/source-data/Case-3/users.txt");
-			User aUser = aLoader.processAndParse().remove(0);
+		Ticket aTicket = new Ticket(aUser);
+		Manager aManager = Manager.getInstance();
 
-			Ticket aTicket = new Ticket(aUser);
-			Manager aManager = Manager.getInstance();
+		Iterator<TourismOption> optionsObtained = aManager.getOptions(aUser);
 
-			Iterator<TourismOption> optionsObtained = aManager.getOptions(aUser);
+		// Assert
 
-			// Assert
-
-			for (TourismOption exp : optionsExpected) {
-				if (optionsObtained.hasNext()) {
-					TourismOption obt = optionsObtained.next();
-					if (obt.isValid(aUser)) {
-						Assert.assertEquals(exp, obt);
-						aManager.checkout(aTicket, obt);
-					} else {
-						Assert.fail();
-					}
-
+		for (TourismOption exp : optionsExpected) {
+			if (optionsObtained.hasNext()) {
+				TourismOption obt = optionsObtained.next();
+				if (obt.isValid(aUser)) {
+					Assert.assertEquals(exp, obt);
+					aManager.checkout(aTicket, obt);
 				} else {
 					Assert.fail();
 				}
-			}
 
-		} catch (Exception e) {
-			Assert.fail();
+			} else {
+				Assert.fail();
+			}
+		}
+
+	}
+	
+	@Test
+	public void testUserCannotBuyAnything() throws Exception {
+
+		List<TourismOption> optionsExpected = new ArrayList<TourismOption>();
+
+		Manager.setAttractionPath("attracctions.txt");
+		Manager.setSourcePath("test/source-data/Case-2/");
+
+		UserLoader aLoader = new UserLoader("test/source-data/Case-2/users.txt");
+		User aUser = aLoader.processAndParse().remove(0);
+
+		Ticket aTicket = new Ticket(aUser);
+		Manager aManager = Manager.getInstance();
+
+		Iterator<TourismOption> optionsObtained = aManager.getOptions(aUser);
+
+		// Assert
+
+		for (TourismOption exp : optionsExpected) {
+			if (optionsObtained.hasNext()) {
+				TourismOption obt = optionsObtained.next();
+				if (obt.isValid(aUser)) {
+					Assert.assertEquals(exp, obt);
+					aManager.checkout(aTicket, obt);
+				} else {
+					Assert.fail();
+				}
+
+			} else {
+				Assert.fail();
+			}
 		}
 
 	}
