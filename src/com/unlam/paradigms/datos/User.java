@@ -1,4 +1,4 @@
-package com.unlam.paradigms.tp;
+package com.unlam.paradigms.datos;
 
 public class User {
 	private String name;

@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.unlam.paradigms.datos.Attraction;
+import com.unlam.paradigms.datos.OfferDescription;
+import com.unlam.paradigms.datos.OfferType;
+import com.unlam.paradigms.datos.TourismOption;
+import com.unlam.paradigms.datos.TourismOptionIterator;
+import com.unlam.paradigms.datos.TourismOptionType;
+import com.unlam.paradigms.datos.User;
+
 public final class Manager {
 	
 	private static String ATTRACTIONS_FILE_NAME;

@@ -1,4 +1,4 @@
-package com.unlam.paradigms.tp;
+package com.unlam.paradigms.datos;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;

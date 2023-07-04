@@ -1,10 +1,9 @@
-package com.unlam.paradigms.tp;
+package com.unlam.paradigms.datos;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-
 import org.junit.Test;
 
 public class OfferABTest {

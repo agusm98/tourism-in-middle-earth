@@ -1,4 +1,4 @@
-package com.unlam.paradigms.tp;
+package com.unlam.paradigms.datos;
 
 public abstract class TourismOption implements Comparable<TourismOption> {
 
