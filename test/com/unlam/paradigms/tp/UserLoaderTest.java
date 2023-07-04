@@ -13,8 +13,11 @@ public class UserLoaderTest {
 	public void testProcessAndParse_ValidFile() throws Exception {
 
 		List<User> expected = new ArrayList<User>();
+		expected.add(new User("jorge", 100.0, 5.0, TourismOptionType.PAISAJE));
+		expected.add(new User("agustin", 200.5, 10.0, TourismOptionType.DEGUSTACION));
+		expected.add(new User("Tomi", 300.0, 2.0, TourismOptionType.AVENTURA));
 
-		String filePath = "test/source-data/users.txt";
+		String filePath = "test/source-data/UserLoaderInput/usersValids.txt";
 		File file = new File(filePath);
 
 		String absolutePath = file.getAbsolutePath();
@@ -41,7 +44,7 @@ public class UserLoaderTest {
 	@Test
 	public void testProcessAndParse_InvalidData() throws Exception {
 		// Arrange
-		String filePath = "test/prueba/source-data/users.txt";
+		String filePath = "test/source-data/UserLoaderInput/usersInvalids.txt";
 		File file = new File(filePath);
 
 		String absolutePath = file.getAbsolutePath();

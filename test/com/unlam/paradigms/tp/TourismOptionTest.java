@@ -77,7 +77,7 @@ public class TourismOptionTest {
 				Assert.assertEquals(exp, obt);
 			}
 			else {
-				break;
+				Assert.fail();
 			}
 		}
 
