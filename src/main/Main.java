@@ -7,11 +7,14 @@ import java.util.List;
 import com.unlam.paradigms.tp.User;
 import com.unlam.paradigms.tp.UserLoader;
 import com.unlam.paradigms.tp.Alfred;
+import com.unlam.paradigms.tp.Manager;
 import com.unlam.paradigms.tp.Ticket;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		String fileName = "src/source-data/users.txt";
+		Manager.setAttractionPath("attracctions.txt");//args[0]
+		Manager.setOfferPath("offers.txt");//args[1]
+		String fileName = "src/source-data/users.txt";//args[2]
 		File file = new File(fileName);
 		String absolutePath = file.getAbsolutePath();
 
