@@ -11,3 +11,4 @@ Una vez finalizado la ejecución total se generara un archivo "src/source-datait
 
 ### UML
 ![image info](https://github.com/JorgeDaniel29/tourism-in-middle-earth/blob/master/documentation/UML.png)
+![Diagrama Tourism in middle-earth-Página-2 (1)](https://github.com/agusm98/tourism-in-middle-earth/assets/66183071/2f01b82a-1d26-4ee6-997c-24948c9881de)
