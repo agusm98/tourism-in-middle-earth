@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.unlam.paradigms.datos.User;
 import com.unlam.paradigms.datos.UserLoader;
-import com.unlam.paradigms.tp.SirAlfred;
+import com.unlam.paradigms.tp.Alfred;
 import com.unlam.paradigms.tp.Manager;
 import com.unlam.paradigms.tp.Ticket;
 
@@ -28,7 +28,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		SirAlfred alfred = new SirAlfred();
+		Alfred alfred = new Alfred();
 
 		List<Ticket> tickets = alfred.offerAttractions(users);
 

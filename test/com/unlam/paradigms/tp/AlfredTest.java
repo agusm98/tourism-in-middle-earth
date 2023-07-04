@@ -11,7 +11,7 @@ import com.unlam.paradigms.datos.Attraction;
 import com.unlam.paradigms.datos.TourismOptionType;
 import com.unlam.paradigms.datos.User;
 
-public class SirAlfredTest {
+public class AlfredTest {
 
 	@Test
 	public void offerAttractionWithoutBudget() throws Exception {
@@ -19,7 +19,7 @@ public class SirAlfredTest {
 		Manager.setAttractionPath("Case-1/attracctions.txt");
 		
 		//Manager.setOfferPath();
-		SirAlfred alfred = new SirAlfred();
+		Alfred alfred = new Alfred();
 		ByteArrayInputStream input = new ByteArrayInputStream("S".getBytes());
 		System.setIn(input);
 		List<User> lstUser = new ArrayList<User>();
@@ -37,7 +37,7 @@ public class SirAlfredTest {
 		Manager.setAttractionPath("Case-1/attracctions.txt");
 		
 		//Manager.setOfferPath();
-		SirAlfred alfred = new SirAlfred();
+		Alfred alfred = new Alfred();
 		ByteArrayInputStream input = new ByteArrayInputStream("S".getBytes());
 		System.setIn(input);
 		List<User> lstUser = new ArrayList<User>();
@@ -50,7 +50,7 @@ public class SirAlfredTest {
 		
 	@Test
 	public void alfredShowSchedule_NullTicket() throws Exception {
-		SirAlfred alfred = new SirAlfred();
+		Alfred alfred = new Alfred();
 		Ticket emptyTicket = new Ticket(null);
 		try {
 			alfred.showSchedule(emptyTicket);
@@ -63,14 +63,14 @@ public class SirAlfredTest {
 	
 	@Test
 	public void alfredShowSchedule_EmptyTicket() throws Exception {
-		SirAlfred alfred = new SirAlfred();
+		Alfred alfred = new Alfred();
 		Ticket emptyTicket = new Ticket(new User("Alfred", 900.0, 900.0, TourismOptionType.AVENTURA));
 		alfred.showSchedule(emptyTicket);
 	}
 	
 	@Test
 	public void alfredShowSchedule_UserTicketWAttraction() throws Exception {
-		SirAlfred alfred = new SirAlfred();
+		Alfred alfred = new Alfred();
 		User usr = new User("Alfred", 30.0, 20.0, TourismOptionType.AVENTURA);
 		Ticket usrTicket = new Ticket(usr);
 		usrTicket.addTourOption(new Attraction("Mordor", 25.0, 3.0, 0, TourismOptionType.AVENTURA));

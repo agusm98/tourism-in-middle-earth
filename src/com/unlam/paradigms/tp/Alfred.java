@@ -10,11 +10,11 @@ import com.unlam.paradigms.datos.User;
 
 import java.util.List;
 
-public class SirAlfred {
+public class Alfred {
 
 	private Manager manager;
 
-	public SirAlfred() throws Exception {
+	public Alfred() throws Exception {
 		this.manager = Manager.getInstance();
 	}
 
