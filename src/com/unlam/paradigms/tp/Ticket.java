@@ -2,6 +2,10 @@ package com.unlam.paradigms.tp;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.unlam.paradigms.datos.TourismOption;
+import com.unlam.paradigms.datos.User;
+
 import java.lang.StringBuilder;
 
 public class Ticket {

@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.unlam.paradigms.tp.User;
-import com.unlam.paradigms.tp.UserLoader;
+import com.unlam.paradigms.datos.User;
+import com.unlam.paradigms.datos.UserLoader;
 import com.unlam.paradigms.tp.Alfred;
 import com.unlam.paradigms.tp.Manager;
 import com.unlam.paradigms.tp.Ticket;

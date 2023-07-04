@@ -1,11 +1,15 @@
 package com.unlam.paradigms.tp;
 
+import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
+import com.unlam.paradigms.datos.Attraction;
+import com.unlam.paradigms.datos.TourismOptionType;
+import com.unlam.paradigms.datos.User;
 
 public class AlfredTest {
 
@@ -47,7 +51,7 @@ public class AlfredTest {
 	@Test
 	public void offerAttractionCheckout() throws Exception {
 		Manager.setSourcePath("test/source-data/");
-		Manager.setAttractionPath("Case-1/attracctions.txt");
+		Manager.setAttractionPath("Case-1/attractions.txt");
 		
 		//Manager.setOfferPath();
 		Alfred alfred = new Alfred();

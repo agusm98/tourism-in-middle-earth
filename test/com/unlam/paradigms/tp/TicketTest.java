@@ -2,6 +2,11 @@ package com.unlam.paradigms.tp;
 
 import org.junit.Test;
 
+import com.unlam.paradigms.datos.Attraction;
+import com.unlam.paradigms.datos.TourismOption;
+import com.unlam.paradigms.datos.TourismOptionType;
+import com.unlam.paradigms.datos.User;
+
 import org.junit.Assert;
 
 public class TicketTest {

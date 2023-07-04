@@ -7,6 +7,13 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.unlam.paradigms.datos.Attraction;
+import com.unlam.paradigms.datos.OfferAbsolute;
+import com.unlam.paradigms.datos.TourismOption;
+import com.unlam.paradigms.datos.TourismOptionType;
+import com.unlam.paradigms.datos.User;
+import com.unlam.paradigms.datos.UserLoader;
+
 public class ManagerTest {
 
 	@Test

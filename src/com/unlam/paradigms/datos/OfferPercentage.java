@@ -1,4 +1,4 @@
-package com.unlam.paradigms.tp;
+package com.unlam.paradigms.datos;
 
 import java.util.List;
 import java.util.Objects;

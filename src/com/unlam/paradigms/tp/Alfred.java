@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import com.unlam.paradigms.datos.TourismOption;
+import com.unlam.paradigms.datos.User;
+
 import java.util.List;
 
 public class Alfred {
